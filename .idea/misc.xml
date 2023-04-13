@@ -6,6 +6,7 @@
       <list>
         <option value="$PROJECT_DIR$/MicroServices/pom.xml" />
         <option value="$PROJECT_DIR$/Eureka/pom.xml" />
+        <option value="$PROJECT_DIR$/APIGateway/pom.xml" />
       </list>
     </option>
   </component>
