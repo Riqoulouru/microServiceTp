@@ -1,8 +1,6 @@
 package LosGuerreros.microservicecommandes.Model;
 
-import jakarta.persistence.EmbeddedId;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,5 +16,9 @@ public class CommandesComposition {
 
     @EmbeddedId
     private CommandesCompositionId commandesCompositionId;
+
+    @ManyToOne
+    @JoinColumn(name = "idCommande", insertable = false, updatable = false)
+    private Commandes commande;
 
 }

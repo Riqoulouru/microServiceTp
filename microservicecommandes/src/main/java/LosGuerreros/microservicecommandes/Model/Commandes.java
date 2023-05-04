@@ -1,9 +1,6 @@
 package LosGuerreros.microservicecommandes.Model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,6 +27,9 @@ public class Commandes {
 
     @Column(name = "idPaiement")
     private int idPaiement;
+
+    @OneToMany(mappedBy = "commande")
+    private List<CommandesComposition> commandesCompositions;
 
 
 }
