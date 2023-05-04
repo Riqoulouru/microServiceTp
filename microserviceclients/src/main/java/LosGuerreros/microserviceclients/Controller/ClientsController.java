@@ -26,4 +26,6 @@ public class ClientsController {
         return clientsRepository.findAll(PageRequest.of(page, number));
     }
 
+
+
 }
