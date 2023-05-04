@@ -11,20 +11,20 @@ public class GatewayConfig {
     public RouteLocator myRoutes(RouteLocatorBuilder builder) {
         return builder.routes()
                 .route(p -> p
-                        .path("/client-service/**")
-                        .uri("lb://client-service")
+                        .path("/clients/**")
+                        .uri("lb://CLIENT")
                 )
                 .route(p -> p
-                        .path("/commande-service/**")
-                        .uri("lb://commande-service")
+                        .path("/commandes/**")
+                        .uri("lb://COMMANDE")
                 )
                 .route(p -> p
-                        .path("/paiement-service/**")
-                        .uri("lb://paiement-service")
+                        .path("/paiements/**")
+                        .uri("lb://PAIEMENT")
                 )
                 .route(p -> p
-                        .path("/produit-service/**")
-                        .uri("lb://produit-service")
+                        .path("/produits/**")
+                        .uri("lb://PRODUIT")
                 )
                 .build();
     }
