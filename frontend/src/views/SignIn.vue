@@ -13,7 +13,7 @@
               <v-row justify="center" class="spacer-2 spacer-bottom-2">
                   <v-col xs="10" sm="10" md="10" lg="10" xl="10">
                       <v-text-field autofocus v-model="login" color="black" dense outlined placeholder="login"></v-text-field>
-                      <v-text-field autofocus v-model="password" color="black" dense outlined placeholder="mot de passe"></v-text-field>
+                      <v-text-field type="password" autofocus v-model="password" color="black" dense outlined placeholder="mot de passe"></v-text-field>
                       <v-row justify="center">
                           <v-btn :loading="isFetching" @click="signInProcess" outlined color="primary"> Se connecter </v-btn>
                       </v-row>

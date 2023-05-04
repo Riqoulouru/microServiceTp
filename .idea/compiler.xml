@@ -21,11 +21,11 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="APIGateway" options="-parameters" />
       <module name="Eureka" options="-parameters" />
-      <module name="MicroServices" options="-parameters" />
-      <module name="microserviceclients" options="-parameters" />
-      <module name="microservicecommandes" options="-parameters" />
-      <module name="microservicepaiements" options="-parameters" />
-      <module name="microserviceproduits" options="-parameters" />
+      <module name="MicroServices" options="" />
+      <module name="microserviceclients" options="" />
+      <module name="microservicecommandes" options="" />
+      <module name="microservicepaiements" options="" />
+      <module name="microserviceproduits" options="" />
     </option>
   </component>
 </project>
