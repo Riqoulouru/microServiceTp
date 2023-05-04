@@ -32,7 +32,4 @@ public class Commandes {
     private int idPaiement;
 
 
-    private ArrayList<Integer> idProduitsList;
-
-
 }
