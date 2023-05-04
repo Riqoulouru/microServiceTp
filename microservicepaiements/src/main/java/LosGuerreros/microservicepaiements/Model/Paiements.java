@@ -8,6 +8,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
+
 
 @Entity
 @Table(name = "paiements")
@@ -18,10 +20,10 @@ import lombok.Setter;
 public class Paiements {
 
     @Id
-    public String login;
-    public String password;
-    public String fistname;
-    public String lastname;
+    private int id;
 
+    private float value;
+
+    private Date date;
 
 }

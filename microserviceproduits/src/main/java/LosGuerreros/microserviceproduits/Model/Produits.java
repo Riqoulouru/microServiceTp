@@ -18,10 +18,14 @@ import lombok.Setter;
 public class Produits {
 
     @Id
-    public String login;
-    public String password;
-    public String fistname;
-    public String lastname;
+    private int id;
 
+    private String name;
+
+    private float price;
+
+    private int stock;
+
+    private String description;
 
 }
