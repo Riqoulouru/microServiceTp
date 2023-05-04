@@ -31,5 +31,12 @@ public class AuthService {
         jwtService.validateToken(token);
     }
 
+    public boolean existingClientByLogin(String login, String password) {
+        Clients client = repository.findByLogin(login).orElse(null);
+        if(client == null) return false;
+        System.out.println(passwordEncoder.encode(password));
+        System.out.println(client.getPassword());
+        return this.passwordEncoder.matches(password, client.getPassword());
+    }
 
 }

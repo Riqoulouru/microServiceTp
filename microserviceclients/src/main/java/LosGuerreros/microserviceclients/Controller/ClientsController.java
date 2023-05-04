@@ -7,10 +7,9 @@ import LosGuerreros.microserviceclients.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/clients")
@@ -20,8 +19,6 @@ public class ClientsController {
     private ClientsRepository clientsRepository;
     @Autowired
     private AuthService service;
-    @Autowired
-    private AuthenticationManager authenticationManager;
 
     @GetMapping("/all")
     public Page<Clients> getAllClient(@RequestParam("page") int page, @RequestParam("number") int number) {
@@ -40,12 +37,15 @@ public class ClientsController {
 
     @PostMapping("/token")
     public String getToken(@RequestBody AuthRequest authRequest) {
-        Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
-        if (authenticate.isAuthenticated()) {
-            return service.generateToken(authRequest.getUsername());
-        } else {
-            throw new RuntimeException("invalid access");
+        try {
+            if (this.service.existingClientByLogin(authRequest.getUsername(), authRequest.getPassword())) {
+                return this.service.generateToken(authRequest.getUsername());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "This login doesn't match with any clients.";
         }
+        return "This client doesn't exist.";
     }
 
     @GetMapping("/validate")

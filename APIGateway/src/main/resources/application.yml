@@ -1,0 +1,40 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: clients
+          uri: lb://CLIENT
+          predicates:
+            - Path=/clients/**
+          filters:
+            - AuthenticationFilter
+
+        - id: commandes
+          uri: lb://COMMANDE
+          predicates:
+            - Path=/commandes/**
+          filters:
+            - AuthenticationFilter
+
+        - id: produits
+          uri: lb://PRODUIT
+          predicates:
+            - Path=/produits/**
+          filters:
+            - AuthenticationFilter
+
+        - id: paiements
+          uri: lb://PAIEMENT
+          predicates:
+            - Path=/paiements/**
+          filters:
+            - AuthenticationFilter
+
+
+  application:
+    name: gateway-service
+
+eureka:
+  client:
+    service-url:
+      defaultZone : http://localhost:8761/eureka/

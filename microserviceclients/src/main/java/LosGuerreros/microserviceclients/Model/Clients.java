@@ -8,9 +8,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.List;
-
 
 @Entity
 @Table(name = "clients")
@@ -23,7 +20,7 @@ public class Clients {
     @Id
     private String login;
     private String password;
-    private String fistname;
+    private String firstname;
     private String lastname;
 
 
