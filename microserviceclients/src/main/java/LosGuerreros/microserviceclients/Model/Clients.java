@@ -21,10 +21,10 @@ import java.util.List;
 public class Clients {
 
     @Id
-    public String login;
-    public String password;
-    public String fistname;
-    public String lastname;
+    private String login;
+    private String password;
+    private String fistname;
+    private String lastname;
 
 
 }
