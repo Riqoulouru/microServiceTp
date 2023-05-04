@@ -2,23 +2,30 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Eureka" />
+        <module name="microservicepaiements" />
+        <module name="MicroServices" />
         <module name="APIGateway" />
+        <module name="microserviceclients" />
+        <module name="Eureka" />
+        <module name="microservicecommandes" />
+        <module name="microserviceproduits" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="MicroServices" target="17" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="APIGateway" options="-parameters" />
       <module name="Eureka" options="-parameters" />
       <module name="MicroServices" options="-parameters" />
+      <module name="microserviceclients" options="-parameters" />
+      <module name="microservicecommandes" options="-parameters" />
+      <module name="microservicepaiements" options="-parameters" />
+      <module name="microserviceproduits" options="-parameters" />
     </option>
   </component>
 </project>

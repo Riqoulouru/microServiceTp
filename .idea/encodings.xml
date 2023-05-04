@@ -7,5 +7,9 @@
     <file url="file://$PROJECT_DIR$/Config/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Eureka/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Eureka/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/microserviceclients/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/microservicecommandes/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/microservicepaiements/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/microserviceproduits/src/main/java" charset="UTF-8" />
   </component>
 </project>
