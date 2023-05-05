@@ -10,8 +10,8 @@
             </div>
 
             <v-col xs="4" sm="4" md="4" lg="4" xl="4">
-                <v-text-field :append-icon="icon.mdiMagnify" placeholder="Rechercher"
-                    filled rounded dense hide-details></v-text-field>
+                <v-text-field :append-icon="icon.mdiMagnify" placeholder="Rechercher" v-model="search"
+                    filled rounded dense hide-details v-on:keyup.enter="searchData"></v-text-field>
 
             </v-col>
 
@@ -107,7 +107,54 @@
             </v-fade-transition>
         </div>
 
-        <div class="home-content-container">
+        <div style="height: 100vh; width: 100vw; display: flex; justify-content: center; align-items: center; color: darkslategrey" v-if="isSearch && productBySearch.length === 0">
+            <v-card-title> Aucun produit n'a été trouvé ⛺️ </v-card-title>
+        </div>
+
+        <div v-if="isSearch" class="home-content-container-search spacer-8">
+
+            <v-row justify="center" class="spacer-2 spacer-bottom-2">
+                <v-pagination
+                    v-model="page"
+                    :length="totalPage"
+                    total-visible="7"
+                    v-on:input="changePagination"
+                ></v-pagination>
+            </v-row>
+
+            <div class="home-content-container-search">
+                <v-card v-for="produit in productBySearch" min-width="250" max-width="250" elevation="1" class="card-produit spacer-2">
+                    <v-img height="170" src="../assets/no-img.png"></v-img>
+                    <v-card-title style="text-align: center !important;">{{produit.name}}</v-card-title>
+                    <v-divider></v-divider>
+                    <v-card-text>{{produit.price}}€</v-card-text>
+                    <v-card-text style="color: darkred">{{produit.stock}} restant(s)</v-card-text>
+                    <v-card-text> Depuis le {{formatDate(produit.insertDate)}}</v-card-text>
+
+                    <v-card-actions style="position:absolute; bottom: 0; right: 0">
+                        <v-spacer></v-spacer>
+
+                        <v-btn icon>
+                            <v-icon color="error" @click="addToWishList(produit.idProduit)">{{icon.mdiHeart}}</v-icon>
+                        </v-btn>
+                        <v-btn icon>
+                            <v-icon color="primary" @click="addToCart(produit.idProduit)">{{icon.mdiCartArrowDown}}</v-icon>
+                        </v-btn>
+                    </v-card-actions>
+                </v-card>
+            </div>
+
+            <v-row justify="center" class="spacer-2 spacer-bottom-2">
+                <v-pagination
+                    v-model="page"
+                    :length="totalPage"
+                    total-visible="7"
+                    v-on:input="changePagination"
+                ></v-pagination>
+            </v-row>
+        </div>
+
+        <div class="home-content-container" v-if="!isSearch">
 
             <v-card-title style="color: darkslategray">Catégories qui pourraient vous plaire</v-card-title>
 
@@ -115,7 +162,7 @@
                 <v-card-title class="category-type">{{category}}</v-card-title>
 
                 <div class="produit-container">
-                    <v-card v-for="produit in produitsByCategoryForHomePage.get(category).content" min-width="250" elevation="1" class="card-produit">
+                    <v-card v-for="produit in produitsByCategoryForHomePage.get(category).content" min-width="250" max-width="250" elevation="1" class="card-produit">
                         <v-img height="170" src="../assets/no-img.png"></v-img>
                         <v-card-title style="text-align: center !important;">{{produit.name}}</v-card-title>
                         <v-divider></v-divider>
@@ -167,7 +214,14 @@ export default {
             avatarText: "",
             usernameText: "",
             isHoverAvatar: false,
-            produitsByCategoryForHomePage: new Map()
+            produitsByCategoryForHomePage: new Map(),
+            isSearch: false,
+            search: "",
+            page: 1,
+            totalPage: 1,
+            sortedBy: "",
+            isSortedDesc: false,
+            productBySearch: []
         }
     },
 
@@ -201,7 +255,6 @@ export default {
                     throw response
                 })
                 .then((result) => {
-                   console.log(result)
                     this.produitsByCategoryForHomePage = new Map(Object.entries(result));
                     this.alert.errorProduitByCategoryForHomePage = false;
                 })
@@ -219,7 +272,7 @@ export default {
         addToWishList: function (idProduit) {
             ClientSync.addProductToWishList(this.user.login, idProduit, this.user.token)
                 .then((response) => {
-                    if (response.status === 200) return response.json();
+                    if (response.status === 200) return response.text();
                     throw response
                 })
                 .finally(() => this.isFetching = false);
@@ -228,11 +281,53 @@ export default {
         addToCart: function (idProduit) {
             ClientSync.addProductToCart(this.user.login, idProduit, this.user.token)
                 .then((response) => {
-                    if (response.status === 200) return response.json();
+                    if (response.status === 200) return response.tewt();
                     throw response
                 })
                 .finally(() => this.isFetching = false);
         },
+
+        searchData: function () {
+
+            const options = {
+                "page": this.page,
+                "itemsPerPage": 20,
+                "sortBy": this.sortedBy,
+                "sortDesc": this.isSortedDesc,
+                "search": this.search
+            }
+
+            if(this.search === "") {
+                this.isSearch = false;
+                this.page = 1;
+                this.sortedBy = "";
+                this.isSortedDesc = false;
+                this.totalPage = 1;
+                this.getAllProduitsByCategoryForHomePage();
+                return
+            }
+
+            this.isSearch = true;
+            this.isFetching = true;
+            ProduitSync.getAllBySearch(options, this.user.token)
+                .then((response) => {
+                    if (response.status === 200) return response.json();
+                    throw response
+                })
+                .then((result) => {
+                    this.productBySearch = result.content;
+                    this.totalPage = result.totalPages;
+                })
+                .catch((error) => {
+                    console.error(error);
+                })
+                .finally(() => this.isFetching = false);
+        },
+
+        changePagination: function (num) {
+            this.page = num;
+            this.searchData();
+        }
 
     },
     mounted() {
@@ -369,6 +464,18 @@ export default {
     margin-top: 10vh;
 }
 
+.home-content-container-search {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.spacer-8 {
+    margin-top: 8vh;
+}
+
 .category-type {
     margin-left: 5vw;
     color: darkred;
@@ -382,8 +489,8 @@ export default {
 }
 
 .card-produit {
-    margin-left: 1.5vw;
-    margin-right: 1.5vw;
+    margin-left: 1vw;
+    margin-right: 1vw;
 }
 
 </style>

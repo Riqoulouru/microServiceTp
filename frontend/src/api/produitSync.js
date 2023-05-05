@@ -11,14 +11,15 @@ export default class ProduitSync {
         });
     }
 
-    static getAllBySearch (options, search, token) {
+    static getAllBySearch (options, token) {
         const param = new URLSearchParams({
             "page": options.page - 1,
             "numberPerPage": options.itemsPerPage,
             "sortedBy": options.sortBy,
             "isSortedDesc": options.sortDesc,
-            "search": search
+            "search": options.search
         })
+        console.log(param)
         return fetch(URL_API + '/produits/home/search?' + param,{
             method: "GET",
             headers: {

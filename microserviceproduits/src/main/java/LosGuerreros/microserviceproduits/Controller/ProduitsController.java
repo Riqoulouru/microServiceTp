@@ -42,7 +42,7 @@ public class ProduitsController {
 
     @GetMapping("/home/search")
     public  ResponseEntity<Page<Produit>> getProduitBySearch(@RequestParam("page") Integer page,
-                                                             @RequestParam("number") Integer number,
+                                                             @RequestParam("numberPerPage") Integer number,
                                                              @RequestParam("search") String search,
                                                              @RequestParam(required = false) String sortedBy,
                                                              @RequestParam(required = false) Boolean isSortedDesc) {
