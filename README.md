@@ -27,6 +27,6 @@ Ceci lancera l'application Vue.js qui communique avec les microservices.
 
 Accédez à ``http://localhost:3000`` dans votre navigateur pour accéder à l'application.
 
-##Configuration
+## Configuration
 
 Vous pouvez modifier la configuration des microservices dans le fichier application.properties dans chaque module. Par exemple, vous pouvez changer le port sur lequel s'exécute chaque microservice cependant le front end ne fonctionnera alors plus a moins d'être modifié également.
