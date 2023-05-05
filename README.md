@@ -18,13 +18,13 @@ Pour exécuter ce projet, vous avez besoin de Java 11 et d'un IDE (IntelliJ est 
 
 6. Enfin, pour lancer le frontend, accédez au dossier frontend et exécutez les commandes suivantes :
 
-``
+    ``
     npm install
     npm run serve
-``
-    Ceci lancera l'application Vue.js qui communique avec les microservices.
+    ``
+Ceci lancera l'application Vue.js qui communique avec les microservices.
 
-    Accédez à http://localhost:8087 dans votre navigateur pour accéder à l'application.
+Accédez à ``http://localhost:3000`` dans votre navigateur pour accéder à l'application.
 
 ##Configuration
 
