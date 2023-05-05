@@ -1,12 +1,12 @@
 package LosGuerreros.microservicecommandes.Repository;
 
-import LosGuerreros.microservicecommandes.Model.Commandes;
+import LosGuerreros.microservicecommandes.Model.Commande;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
 
-public interface CommandesRepository extends CrudRepository<Commandes, String> {
+public interface CommandeRepository extends CrudRepository<Commande, Integer> {
 
-    public Page<Commandes> findAll(Pageable pageable);
+    public Page<Commande> findAll(Pageable pageable);
 
 }

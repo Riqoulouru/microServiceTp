@@ -1,5 +1,6 @@
 package LosGuerreros.microserviceclients.service;
 
+import LosGuerreros.microserviceclients.Model.Client;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
@@ -23,9 +24,12 @@ public class JwtService {
     }
 
 
-    public String generateToken(String userName) {
+    public String generateToken(Client client) {
         Map<String, Object> claims = new HashMap<>();
-        return createToken(claims, userName);
+        claims.put("login", client.getLogin());
+        claims.put("lastname", client.getLastname());
+        claims.put("firstname", client.getFirstname());
+        return createToken(claims, client.getLogin());
     }
 
     private String createToken(Map<String, Object> claims, String userName) {

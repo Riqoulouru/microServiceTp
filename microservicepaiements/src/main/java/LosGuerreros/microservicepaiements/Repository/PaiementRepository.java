@@ -1,13 +1,13 @@
 package LosGuerreros.microservicepaiements.Repository;
 
 
-import LosGuerreros.microservicepaiements.Model.Paiements;
+import LosGuerreros.microservicepaiements.Model.Paiement;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
 
-public interface PaiementsRepository extends CrudRepository<Paiements, String> {
+public interface PaiementRepository extends CrudRepository<Paiement, Integer> {
 
-    public Page<Paiements> findAll(Pageable pageable);
+    public Page<Paiement> findAll(Pageable pageable);
 
 }

@@ -1,18 +1,43 @@
-import { URL_API_CLIENT } from '@/main'
+import { URL_API } from '@/main'
 
 export default class ClientSync {
 
     static processLogin (login, password) {
 
-        const params = new URLSearchParams();
-        params.append('login', login);
-        params.append('password', password);
+        const params = {
+            "username": login,
+            "password": password
+        }
 
-        return fetch(URL_API_CLIENT + '/service/login',
+        return fetch(URL_API + '/clients/token',
             {
                 method: "POST",
-                body: params,
-                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(params)
+
+            });
+
+    }
+
+    static processSignUp (login, password, firstname, lastname) {
+
+        const params = {
+            "login": login,
+            "password": password,
+            "firstname": firstname,
+            "lastname": lastname
+        }
+
+        return fetch(URL_API + '/clients/register',
+            {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(params)
+
             });
 
     }
@@ -27,7 +52,27 @@ export default class ClientSync {
             "search": search
         })
 
-        return fetch(URL_API_CLIENT + '/clients/all?' + param, { method: "GET"});
+        return fetch(URL_API + '/clients/all?' + param, { method: "GET"});
+    }
+
+    static addProductToWishList (login, idProduit, token) {
+        return fetch(URL_API + '/clients/update/wish/' + login + "/" + idProduit, {
+            method: "PATCH",
+            headers: {
+                Authorization: token
+            }
+        });
+    }
+
+
+    static addProductToCart (login, idProduit, token) {
+        return fetch(URL_API + '/clients/update/cart/' + login + "/" + idProduit, {
+            method: "PATCH",
+            headers: {
+                'Authorization': token,
+                'Content-Type': 'application/json'
+            }
+        });
     }
 
 

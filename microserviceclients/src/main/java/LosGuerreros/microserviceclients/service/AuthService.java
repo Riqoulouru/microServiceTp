@@ -1,7 +1,7 @@
 package LosGuerreros.microserviceclients.service;
 
-import LosGuerreros.microserviceclients.Model.Clients;
-import LosGuerreros.microserviceclients.Repository.ClientsRepository;
+import LosGuerreros.microserviceclients.Model.Client;
+import LosGuerreros.microserviceclients.Repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -10,21 +10,21 @@ import org.springframework.stereotype.Service;
 public class AuthService {
 
     @Autowired
-    private ClientsRepository repository;
+    private ClientRepository clientRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Autowired
     private JwtService jwtService;
 
-    public String saveClient(Clients credential) {
+    public String saveClient(Client credential) {
         credential.setPassword(passwordEncoder.encode(credential.getPassword()));
-        repository.save(credential);
+        clientRepository.save(credential);
         return "user added to the system";
     }
 
-    public String generateToken(String login) {
-        return jwtService.generateToken(login);
+    public String generateToken(Client client) {
+        return jwtService.generateToken(client);
     }
 
     public void validateToken(String token) {
@@ -32,10 +32,8 @@ public class AuthService {
     }
 
     public boolean existingClientByLogin(String login, String password) {
-        Clients client = repository.findByLogin(login).orElse(null);
+        Client client = clientRepository.findByLogin(login).orElse(null);
         if(client == null) return false;
-        System.out.println(passwordEncoder.encode(password));
-        System.out.println(client.getPassword());
         return this.passwordEncoder.matches(password, client.getPassword());
     }
 

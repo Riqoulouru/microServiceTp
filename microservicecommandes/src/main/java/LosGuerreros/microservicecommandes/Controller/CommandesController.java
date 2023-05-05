@@ -1,10 +1,10 @@
 package LosGuerreros.microservicecommandes.Controller;
 
 
-import LosGuerreros.microservicecommandes.Model.Commandes;
-import LosGuerreros.microservicecommandes.Repository.CommandesRepository;
-import LosGuerreros.microservicecommandes.dto.CommandesDto;
-import LosGuerreros.microservicecommandes.mapper.CommandesMapper;
+import LosGuerreros.microservicecommandes.Model.Commande;
+import LosGuerreros.microservicecommandes.Repository.CommandeRepository;
+import LosGuerreros.microservicecommandes.dto.CommandeDto;
+import LosGuerreros.microservicecommandes.mapper.CommandeMapper;
 import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,20 +17,20 @@ import org.springframework.web.bind.annotation.*;
 public class CommandesController {
 
     @Autowired
-    private CommandesRepository commandesRepository;
+    private CommandeRepository commandeRepository;
 
     @Resource
-    CommandesMapper commandesMapper;
+    CommandeMapper commandeMapper;
 
     @GetMapping("/all")
-    public Page<CommandesDto> getAllClient(@RequestParam("page") int page, @RequestParam("number") int number) {
+    public Page<CommandeDto> getAllCommande(@RequestParam("page") int page, @RequestParam("number") int number) {
         Pageable pageable = PageRequest.of(page, number);
-        return commandesMapper.mapCommandesToCommandesDto(commandesRepository.findAll(pageable), pageable);
+        return commandeMapper.mapCommandeToCommandeDto(commandeRepository.findAll(pageable), pageable);
     }
 
     @PostMapping("/save")
-    public @ResponseBody Commandes getAllClient(@RequestBody Commandes commandes) {
-        return commandesRepository.save(commandes);
+    public @ResponseBody Commande saveCommande(@RequestBody Commande commande) {
+        return commandeRepository.save(commande);
     }
 
 }

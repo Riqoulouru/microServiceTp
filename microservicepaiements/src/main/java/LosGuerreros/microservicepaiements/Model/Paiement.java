@@ -1,8 +1,6 @@
 package LosGuerreros.microservicepaiements.Model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,18 +10,17 @@ import java.util.Date;
 
 
 @Entity
-@Table(name = "paiements")
+@Table(name = "paiement")
 @Getter
 @Setter
 @NoArgsConstructor
 @Data
-public class Paiements {
+public class Paiement {
 
     @Id
-    private int id;
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int idPaiement;
     private float value;
-
     private Date date;
 
 }

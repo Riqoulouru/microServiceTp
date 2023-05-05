@@ -7,18 +7,17 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "commandesComposition")
+@Table(name = "commande_composition")
 @Getter
 @Setter
 @NoArgsConstructor
 @Data
-public class CommandesComposition {
+public class CommandeComposition {
 
     @EmbeddedId
-    private CommandesCompositionId commandesCompositionId;
-
+    private CommandeCompositionId commandeCompositionId;
     @ManyToOne
-    @JoinColumn(name = "idCommande", insertable = false, updatable = false)
-    private Commandes commande;
+    @JoinColumn(name = "id_commande", insertable = false, updatable = false)
+    private Commande commande;
 
 }

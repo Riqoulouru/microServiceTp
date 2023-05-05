@@ -5,20 +5,28 @@
 
       <div class="signIn-container">
 
-          <v-card outlined elevation="0">
-              <v-card-title> Bienvenu sur E-commerce de N</v-card-title>
+          <v-card outlined elevation="5" color="white">
+              <v-row justify="center" class="spacer-1 spacer-bottom-1">
+                  <img class="cosmo-logo" src="../assets/logo.png" alt="cosmo">
+              </v-row>
 
               <v-divider></v-divider>
 
-              <v-row justify="center" class="spacer-2 spacer-bottom-2">
+              <v-card-text class="spacer-1"> Connectez-vous pour un maximum de bon plan 🥇 </v-card-text>
+
+              <v-row justify="center" class="spacer-bottom-2">
                   <v-col xs="10" sm="10" md="10" lg="10" xl="10">
-                      <v-text-field autofocus v-model="login" color="black" dense outlined placeholder="login"></v-text-field>
-                      <v-text-field type="password" autofocus v-model="password" color="black" dense outlined placeholder="mot de passe"></v-text-field>
-                      <v-row justify="center">
+                      <v-text-field autofocus hide-details v-model="login" color="black" dense outlined placeholder="Login" v-on:keyup.enter="signInProcess"></v-text-field>
+                      <v-text-field class="spacer-1" type="password" hide-details v-model="password" color="black" dense outlined placeholder="Mot de passe" v-on:keyup.enter="signInProcess"></v-text-field>
+                      <v-row justify="center" class="spacer-2">
                           <v-btn :loading="isFetching" @click="signInProcess" outlined color="primary"> Se connecter </v-btn>
                       </v-row>
                   </v-col>
               </v-row>
+
+              <v-divider></v-divider>
+
+              <v-card-text style="text-align: center;"> Pas de compte ? <a @click="signUp">Inscrivez-vous ici</a></v-card-text>
 
           </v-card>
 
@@ -26,7 +34,7 @@
 
 
       <div class="alert-container">
-          <v-alert type="error" class="alert" transition="scale-transition" dismissible dense text v-model="alert.errorSignIn"> Login ou mot de passe incorrect </v-alert>
+          <v-alert type="error" class="alert" transition="scale-transition" dismissible dense v-model="alert.errorSignIn"> Login ou mot de passe incorrect </v-alert>
       </div>
 
   </div>
@@ -69,6 +77,10 @@ export default {
                 })
                 .finally(() => this.isFetching = false);
 
+        },
+
+        signUp: function () {
+            this.$router.push({name: "SignUp"})
         }
 
     },
@@ -89,6 +101,9 @@ export default {
     justify-content: center;
     width: 100%;
     height: 100%;
+    background: url("../assets/background.jpeg");
+    background-position: center top;
+    background-size: 150% auto;
 }
 
 .alert-container {
@@ -119,8 +134,24 @@ export default {
     margin-top: 2vh;
 }
 
+.spacer-1 {
+    margin-top: 1vh;
+}
+
+.spacer-05 {
+    margin-top: .5vh;
+}
+
 .spacer-bottom-2 {
     margin-bottom: 2vh;
+}
+
+.spacer-bottom-1 {
+    margin-bottom: 1vh;
+}
+
+.spacer-bottom-05 {
+    margin-bottom: .5vh;
 }
 
 .alert {
@@ -128,5 +159,9 @@ export default {
     padding-right: 2vw;
 }
 
+.cosmo-logo {
+    height: 13vh;
+    width: auto;
+}
 
 </style>

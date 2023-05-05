@@ -2,8 +2,6 @@ package LosGuerreros.microservicecommandes.Model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,14 +14,9 @@ import java.io.Serializable;
 @Setter
 @NoArgsConstructor
 @Data
-public class CommandesCompositionId implements Serializable {
-
-    @Column(name = "idCommande")
+public class CommandeCompositionId implements Serializable {
+    @Column(name = "id_commande")
     private int idCommande;
-
-    @Column(name = "idProduit")
+    @Column(name = "id_produit")
     private int idProduit;
-
-
-
 }
