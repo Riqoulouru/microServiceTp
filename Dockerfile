@@ -28,9 +28,10 @@ RUN git clone https://github.com/Riqoulouru/microServiceTp.git
 # Définit le répertoire de travail à l'intérieur du conteneur
 WORKDIR /microServiceTp
 
-# Compile et exécute l'application
-RUN ./mvnw package
-CMD ["java", "-jar", "target/microServices-0.0.1-SNAPSHOT.jar"]
+# Compile le frontend Vue.js
+WORKDIR /app/microServiceTp/frontend
+RUN npm install
+RUN npm run build
 
 # Lancement de l'application
 CMD ["java", "-version", "20", "-cp", "Eureka", "LosGuerreros.Eureka.EurekaApplication"]
@@ -40,8 +41,7 @@ CMD ["java", "-version", "20", "-cp", "microservicecommandes", "LosGuerreros.mic
 CMD ["java", "-version", "20", "-cp", "microservicepaiements", "LosGuerreros.microservicepaiements.MicroServicepaiementsApplication"]
 CMD ["java", "-version", "20", "-cp", "microserviceproduits", "LosGuerreros.microserviceproduits.MicroServiceproduitsApplication"]
 
-# Compile le frontend Vue.js
-WORKDIR /app/microServiceTp/frontend
-RUN npm install
-RUN npm run build
+# Compile et exécute l'application
+RUN ./mvnw package
+CMD ["java", "-jar", "target/microServices-0.0.1-SNAPSHOT.jar"]
 
