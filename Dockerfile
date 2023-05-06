@@ -35,7 +35,8 @@ RUN npm run build
 
 # Lancement de l'application
 CMD ["java", "-version", "20", "-cp", "Eureka", "LosGuerreros.Eureka.EurekaApplication"]
-CMD ["java", "-version", "20", "-cp", "MicroServices", "LosGuerreros.MicroServices.MicroServicesApplication"]
+CMD ["java", "-version", "20", "-cp", "MicroServices", "LosGuerreros.APIGateway.APIGatewayApplication"]
+CMD ["java", "-version", "20", "-cp", "APIGateway", "LosGuerreros.MicroServices.MicroServicesApplication"]
 CMD ["java", "-version", "20", "-cp", "microserviceclients", "LosGuerreros.microserviceclients.MicroServiceclientsApplication"]
 CMD ["java", "-version", "20", "-cp", "microservicecommandes", "LosGuerreros.microservicecommandes.MicroServicecommandesApplication"]
 CMD ["java", "-version", "20", "-cp", "microservicepaiements", "LosGuerreros.microservicepaiements.MicroServicepaiementsApplication"]
