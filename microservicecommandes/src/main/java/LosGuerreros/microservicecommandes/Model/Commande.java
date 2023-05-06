@@ -23,7 +23,7 @@ public class Commande {
     private int idCommande;
     private String login;
     private int idPaiement;
-    @OneToMany(mappedBy = "commande")
+    @OneToMany(mappedBy = "commande", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<CommandeComposition> commandeCompositions;
 
 

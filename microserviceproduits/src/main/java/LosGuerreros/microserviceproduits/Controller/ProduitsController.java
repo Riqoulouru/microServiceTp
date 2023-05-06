@@ -52,4 +52,9 @@ public class ProduitsController {
         return ResponseEntity.ok(produitRepository.findAllBySearch(pageable, search));
     }
 
+    @PostMapping("/all/isIn")
+    public @ResponseBody ResponseEntity<List<Produit>> getAllByIdIsIn(@RequestBody List<Integer> idProduits) {
+        return ResponseEntity.ok(produitRepository.findAllByIdProduitIsIn(idProduits));
+    }
+
 }

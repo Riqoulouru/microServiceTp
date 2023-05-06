@@ -13,6 +13,7 @@ public interface ProduitRepository extends CrudRepository<Produit, Integer> {
 
     public Page<Produit> findAll(Pageable pageable);
     public Page<Produit> findAllByCategory(String category, Pageable pageable);
+    public List<Produit> findAllByIdProduitIsIn(List<Integer> idProduits);
     @Query("SELECT prod FROM Produit prod" +
             "   WHERE coalesce(prod.category ,'') LIKE concat('%',:search, '%') OR" +
             "       coalesce(prod.name ,'') LIKE concat('%',:search, '%')")
