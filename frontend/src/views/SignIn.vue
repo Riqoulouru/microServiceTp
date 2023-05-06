@@ -12,7 +12,7 @@
 
               <v-divider></v-divider>
 
-              <v-card-text class="spacer-1"> Connectez-vous pour un maximum de bon plan 🥇 </v-card-text>
+              <v-card-text class="spacer-1"> Connectez-vous pour un maximum de bons plans 🥇 </v-card-text>
 
               <v-row justify="center" class="spacer-bottom-2">
                   <v-col xs="10" sm="10" md="10" lg="10" xl="10">

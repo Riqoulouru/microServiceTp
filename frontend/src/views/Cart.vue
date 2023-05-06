@@ -126,7 +126,7 @@
                 <v-col class="flex-column-users">
                     <v-row justify="center">
                         <v-col xs="12" sm="12" md="12" lg="12" xl="12">
-                            <v-card-text> Pour le bien du TP, il est impossible de paiement de façon réelle. Le process va continuer comme si le payement avait été effectué </v-card-text>
+                            <v-card-text> Pour le bien du TP, il est impossible de payer de façon réelle. Le process va continuer comme si le paiement avait été effectué </v-card-text>
                         </v-col>
                         <v-col xs="12" sm="12" md="12" lg="12" xl="12">
                             <v-btn outlined color="success" @click="afterPaiement"> Continuer </v-btn>
