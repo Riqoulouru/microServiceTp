@@ -55,6 +55,15 @@ export default class ClientSync {
         return fetch(URL_API + '/clients/all?' + param, { method: "GET"});
     }
 
+    static getClientByLogin (login, token) {
+        return fetch(URL_API + '/clients/one/' + login, {
+            method: "GET",
+            headers: {
+                Authorization: token
+            }
+        });
+    }
+
     static addProductToWishList (login, idProduit, token) {
         return fetch(URL_API + '/clients/update/wish/' + login + "/" + idProduit, {
             method: "PATCH",
@@ -68,6 +77,36 @@ export default class ClientSync {
     static addProductToCart (login, idProduit, token) {
         return fetch(URL_API + '/clients/update/cart/' + login + "/" + idProduit, {
             method: "PATCH",
+            headers: {
+                'Authorization': token,
+                'Content-Type': 'application/json'
+            }
+        });
+    }
+
+    static removeToWishList (login, idProduit, token) {
+        return fetch(URL_API + '/clients/remove/wish/' + login + "/" + idProduit, {
+            method: "DELETE",
+            headers: {
+                'Authorization': token,
+                'Content-Type': 'application/json'
+            }
+        });
+    }
+
+    static removeToCart (login, idProduit, token) {
+        return fetch(URL_API + '/clients/remove/cart/' + login + "/" + idProduit, {
+            method: "DELETE",
+            headers: {
+                'Authorization': token,
+                'Content-Type': 'application/json'
+            }
+        });
+    }
+
+    static resetCart (login, token) {
+        return fetch(URL_API + '/clients/reset/cart/' + login, {
+            method: "DELETE",
             headers: {
                 'Authorization': token,
                 'Content-Type': 'application/json'

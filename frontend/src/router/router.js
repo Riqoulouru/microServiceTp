@@ -24,5 +24,17 @@ export default new Router({
             component: () => import('../views/Home.vue'),
             props: true
         },
+        {
+            path: '/wish',
+            name: 'WishList',
+            component: () => import('../views/WishList.vue'),
+            props: true
+        },
+        {
+            path: '/cart',
+            name: 'Cart',
+            component: () => import('../views/Cart.vue'),
+            props: true
+        },
     ]
 })

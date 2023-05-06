@@ -11,6 +11,17 @@ export default class ProduitSync {
         });
     }
 
+    static getProductsByIdList (idProduits, token) {
+        return fetch(URL_API + '/produits/all/isIn',{
+            method: "POST",
+            body: JSON.stringify(idProduits),
+            headers: {
+                 Authorization: token,
+                'Content-Type': 'application/json'
+            }
+        });
+    }
+
     static getAllBySearch (options, token) {
         const param = new URLSearchParams({
             "page": options.page - 1,
