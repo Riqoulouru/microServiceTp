@@ -42,4 +42,4 @@ Comme dit auparavant, vous pourrez accéder à l'application via l'URL :
 Vous ne devriez pas avoir à vous occuper de la base de données vu que cette dernière est hostée sur l'un de nos serveurs
 
 Schéma global de l'application :
-![Capture d’écran 2023-05-06 à 12.35.12.png](..%2F..%2F..%2F..%2F..%2F..%2F..%2Fvar%2Ffolders%2F5q%2Fxt02p_ls2gg9pg93h2z0jhr00000gn%2FT%2FTemporaryItems%2FNSIRD_screencaptureui_qfE7s5%2FCapture%20d%E2%80%99%C3%A9cran%202023-05-06%20%C3%A0%2012.35.12.png)
+![schema_app.png](schema_app.png)
